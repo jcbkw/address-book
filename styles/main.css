@@ -1,4 +1,7 @@
-html, body, h1 {
+html, 
+body, 
+ul {
+   
     margin: 0;
     padding: 0;
     font-family: "Lucida Bright", Georgia, serif;
@@ -7,21 +10,43 @@ html, body, h1 {
 .header {
 
     text-align: center;
-    border-bottom: 1px solid black;
-    background-color: #767676;
-    color: white;
-    padding: 75px;
+    padding: 50px;
+
 }
 
 .avatar {
+    
+    height: 65px;
+    width: auto;
+}
 
-    height: 50px;
-    width: 50px;
+.image-wrapper {
+
+    width: 100px;
+
+}
+.contact-name {
+
+    width: 350px;
 
 }
 
-.contact-list .contact {
+.contact-number {
 
+    width: 200px;
+
+}
+
+.contact-list {
+    
     list-style-type: none;
+    width: 100%;
+
+}
+
+.contact-list .col {
+
+    vertical-align: middle;
+    text-align: center;
 
 }

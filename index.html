@@ -1,8 +1,9 @@
 <!DOCTYPE html> 
 <html>
     <head>
-        <link rel="stylesheet" href="scripts/main.css"/>
-        <link rel="stylesheet" href="scripts/palatte.css"/>
+        <link rel="stylesheet" href="styles/utils.css"/>
+        <link rel="stylesheet" href="styles/palette.css"/>
+        <link rel="stylesheet" href="styles/main.css"/>
         <meta charset="UTF-8">
         <meta name="keywords" content="HTML, CSS, XML, JavaScript">
         <script src="contacts.json"></script>
@@ -11,28 +12,18 @@
     <body>
         <main class="main-wrapper">
             <section class="header-wrapper">
-                <header class="header">
+                <header class="header text-primary-color divider-color default-primary-color">
                     <h1>My Address Book</h1>
                 </header>   
             </section>
             <section class="main-content">
-                <ul class="contact-list"> 
-                    <li class= "contact" "contact#">   
-                        <div class="contact-wrapper">
-                            <div class="img-wrapper">
-                                <img class ="avatar" src="images/avatars.jpg" alt="avatar">
-                            </div>
-                            <h3 class="name">spdmcspoejf</h3>
-                            <h3 class="phone-number">(201)201-2012</h3>
-                            <div class="content-wrapper">
-                                <p class="street">124 Ojmdcojef Ave</p>
-                                <p class="street2">Apt 2</p>
-                                <span class="city">Jerpjk</span>
-                                <span class="state">NJ</span>
-                                <span class="zip">07384</span>
-                            </div>
-                        </div>
-                     </li>   
+                <ul class="table contact-list"> 
+                    <li class="row contact light-primary-color">   
+                        <figure class="col img-wrapper"><img class="avatar" src="images/people/avatars_01.png" alt="avatar"></figure>
+                        <h3 class="col contact-name">Sspdmcspoejf Heath</h3>
+                        <a class="col contact-number" href="tel:201-201-2012">(201) 201-2012</a>
+                        <address class="col address">124 Ojmdcojef Ave, Apt 2, Jerpjk, NJ 07384</address>
+                     </li>      
                 </ul>
             </section>
         </main>     
