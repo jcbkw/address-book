@@ -6,26 +6,10 @@
         <link rel="stylesheet" href="styles/main.css"/>
         <meta charset="UTF-8">
         <meta name="keywords" content="HTML, CSS, XML, JavaScript">
-        <script src="contacts.json"></script>
+        <script src="scripts/Address.js"></script>
+        <script src="scripts/Person.js"></script>
+        <script src="scripts/main.js"></script>
         <title>My Address Book</title>
     </head>
-    <body>
-        <main class="main-wrapper">
-            <section class="header-wrapper">
-                <header class="header text-primary-color divider-color default-primary-color">
-                    <h1>My Address Book</h1>
-                </header>   
-            </section>
-            <section class="main-content">
-                <ul class="table contact-list"> 
-                    <li class="row contact light-primary-color">   
-                        <figure class="col img-wrapper"><img class="avatar" src="images/people/avatars_01.png" alt="avatar"></figure>
-                        <h3 class="col contact-name">Sspdmcspoejf Heath</h3>
-                        <a class="col contact-number" href="tel:201-201-2012">(201) 201-2012</a>
-                        <address class="col address">124 Ojmdcojef Ave, Apt 2, Jerpjk, NJ 07384</address>
-                     </li>      
-                </ul>
-            </section>
-        </main>     
-    </body>  
+    <body onload="initialize()"></body>  
 </html>
