@@ -1,43 +1,76 @@
-function getContent () {
+function getContent (url, callback) {
 
-      var addressData = new XMLHttpRequest();
+    var xhr = new XMLHttpRequest();
 
-      addressData.open("GET", "scripts/contacts.json", true);
-      
-      addressData.addEventListener("load", function() {
-          
-           var parsedData = JSON.parse(addressData.responseText);
+        xhr.open("GET", url, true);
 
-           buildContacts(parsedData);
+        xhr.addEventListener("load", function(e) {
 
-      }, false);
-      
-      addressData.send();
+            var parsedData;
+
+            try {
+                
+                parsedData = JSON.parse(xhr.responseText);
+
+                
+
+            }
+            catch (e) {
+
+                parsedData = null;
+
+            }
+
+            callback(parsedData);
+
+        }, false);
+
+        xhr.send();
 
 }
 
-function buildContacts (data) {
+function getQuery () {
+    
+    var obj = {};
 
-    var p = data.contactList,
-        ulElement = buildAddressBookPage(data.contactListName),
+    location.search.substring(1).split("&").forEach(function (w) {
+        
+        var parts = w.split("="); 
+        
+        obj[decodeURIComponent(parts[0])]=decodeURIComponent(parts[1]);
+        
+    });
+    
+    return obj;
+}
+
+function buildContacts (contacts, content) {
+
+    var p = contacts.contactList,
         liElementCount = 0,
+        ulElement = buildAddressBookPage(content.contactListName),
         addressElement,
         figureElement,
         imgElement,
         h3Element,
         liElement,
-        aElement;
- 
+        aElement,
+        criteria = getQuery().name;
+
     for (var i = 0; i < p.length; i += 1) {
   
       var content = [],
           contact = new Person (p[i]);
+      if (criteria && !contact.matches(criteria)) {
 
+            continue;
+      }
+          
         content.push (document.createTextNode(contact.name), 
                      document.createTextNode(contact.phone),
                      document.createTextNode(contact.getAddress().toString()));
                      
-        liElementCount +=1;             
+        liElementCount +=1;  //May use this to index as a unique identifier for contacts.           
         liElement = document.createElement("li");
         figureElement = document.createElement("figure");
         imgElement = document.createElement("img");
@@ -103,6 +136,15 @@ function buildAddressBookPage (title) {
 
 function initialize () {
     
-    getContent();
+   getContent("data/content.json", function (content) {
+
+        getContent("data/contacts.json", function (contacts) {
+
+            buildContacts(contacts, content || {contactListName: 'Derp'});
+
+        });
+
+   });
+
 
 }
