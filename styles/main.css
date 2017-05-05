@@ -7,6 +7,7 @@ ul {
     font-family: "Lucida Bright", Georgia, serif;
 }
 
+
 .header {
 
     text-align: center;
@@ -49,4 +50,10 @@ ul {
     vertical-align: middle;
     text-align: center;
 
+}
+
+input[required]:hover {
+    
+    border: 1px solid red;
+    
 }

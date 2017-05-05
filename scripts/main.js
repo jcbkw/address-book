@@ -1,3 +1,5 @@
+/* global decodeURIComponent */
+
 function getContent (url, callback) {
 
     var xhr = new XMLHttpRequest();
@@ -29,15 +31,21 @@ function getContent (url, callback) {
 
 }
 
+function urlDecode (value) {
+    
+    return decodeURIComponent(value).split('+').join(' ');
+    
+}
+
 function getQuery () {
     
     var obj = {};
 
     location.search.substring(1).split("&").forEach(function (w) {
         
-        var parts = w.split("="); 
+        var parts = w.split("=");
         
-        obj[decodeURIComponent(parts[0])]=decodeURIComponent(parts[1]);
+        obj[urlDecode(parts[0])]= parts[1] ? urlDecode(parts[1]) : '';
         
     });
     

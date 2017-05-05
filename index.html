@@ -4,12 +4,42 @@
         <link rel="stylesheet" href="styles/utils.css"/>
         <link rel="stylesheet" href="styles/palette.css"/>
         <link rel="stylesheet" href="styles/main.css"/>
+        <link rel="stylesheet" href="styles/welcome.css"/>
         <meta charset="UTF-8">
         <meta name="keywords" content="HTML, CSS, XML, JavaScript">
-        <script src="scripts/Address.js"></script>
-        <script src="scripts/Person.js"></script>
-        <script src="scripts/main.js"></script>
-        <title>My Address Book</title>
+        <title>Welcome</title>
     </head>
-    <body onload="initialize()"></body>  
+    <body>
+        <main class="main">
+            
+            <section class="dark-primary-color form-container">
+                
+                <header class="header">
+                    <h1>Welcome to Address Book!</h1>
+                </header>
+                
+                <form action="contact.html"
+                      method="GET" class="wrapper">
+                    
+                    <input type="text"
+                           name="name"
+                           placeholder="Leave empty for all">
+                    
+                    <!--select name="sort">
+                        <option value=""></option>
+                        <option value="asc">Ascending</option>
+                        <option value="desc">Descending</option>
+                    </select-->
+                    
+                    <button>Search</button>
+                    
+                </form>
+                
+                <p class="accent-color"><a href="manage.html" class="link primary-text-color">Manage Contacts </a><p>
+                
+            </section>
+            
+        </main>
+        
+    </body>  
 </html>
