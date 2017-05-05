@@ -1,0 +1,30 @@
+{
+  "name": "address-book",
+  "version": "1.0.0",
+  "description": "Address book to store contacts",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jcbkw/address-book.git"
+  },
+  "keywords": [
+    "bootstrap",
+    "jquery",
+    "nodejs",
+    "contact",
+    "address"
+  ],
+  "author": "",
+  "license": "",
+  "bugs": {
+    "url": "https://github.com/jcbkw/address-book/issues"
+  },
+  "homepage": "https://github.com/jcbkw/address-book#readme",
+  "devDependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2"
+  }
+}

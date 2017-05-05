@@ -1,56 +1,40 @@
 {
-    "contactList": 
- [
-     {
-         "name": "Joi Wilkins",
-         "phone": "201-555-4444",  
-         "avatar": "avatars_01.png",  
-         
-         "address": {
-            
-           "street": "259 24th Street",
-           "street2": "2nd Floor",
-           "city": "Jersey City",
-           "state": "New Jersey",
-           "zip": "07306"
-           
-         }
-
-     },
-
-     {
-         "name": "Heath Wilkins",
-         "phone": "201-555-4444",
-         "avatar": "avatars_02.png",  
-         
-         "address": {
-            
-           "street": "259 24th Street",
-           "street2": "2nd Floor",
-           "city": "Jersey City",
-           "state": "New Jersey",
-           "zip": "07306"
-           
-         }       
-
-     },
-
-     {
-         "name": "Michael Wilkins",
-         "phone": "201-555-4444",
-         "avatar": "avatars_03.png",  
-         
-         "address": {
-            
-           "street": "259 24th Street",
-           "street2": "1st Floor",
-           "city": "Jersey City",
-           "state": "New Jersey",
-           "zip": "07306"
-           
-         }       
-
-     }
-
- ]
+    "contactList": [
+        {
+            "name": "Joi Wilkins",
+            "phone": "201-555-4444",
+            "avatar": "avatars_01.png",
+            "address": {
+                "street": "259 24th Street",
+                "street2": "2nd Floor",
+                "city": "Jersey City",
+                "state": "New Jersey",
+                "zip": "07306"
+            }
+        },
+        {
+            "name": "Heath Wilkins",
+            "phone": "201-555-4444",
+            "avatar": "avatars_02.png",
+            "address": {
+                "street": "259 24th Street",
+                "street2": "2nd Floor",
+                "city": "Jersey City",
+                "state": "New Jersey",
+                "zip": "07306"
+            }
+        },
+        {
+            "name": "Michael Wilkins",
+            "phone": "201-555-4444",
+            "avatar": "avatars_03.png",
+            "address": {
+                "street": "259 24th Street",
+                "street2": "1st Floor",
+                "city": "Jersey City",
+                "state": "New Jersey",
+                "zip": "07306"
+            }
+        }
+    ]
 }

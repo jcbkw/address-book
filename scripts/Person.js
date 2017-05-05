@@ -18,4 +18,4 @@ Person.prototype.matches = function (criteria) {
     return this.name.toLowerCase().indexOf(criteria.toLowerCase()) !== -1; 
     
 
-}
+};
