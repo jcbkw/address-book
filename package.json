@@ -4,7 +4,8 @@
   "description": "Address book to store contacts",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js",
+    "debug": "node-debug app.js"
   },
   "repository": {
     "type": "git",

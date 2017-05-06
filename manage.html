@@ -5,6 +5,7 @@
         <link href="styles/lib/bootstrap.min.css" rel="stylesheet">
         <link href="styles/palette.css" rel="stylesheet"/>
         <link href="styles/manage.css" rel="stylesheet">
+        
     </head>
     <body>
         <main>
@@ -14,32 +15,32 @@
                 <div class="panel-body">
 
                     <fieldset name="add_contact" >
-                        <form name="new_contact" action="">
-                            <div class="form-group">           
+                        <form id="newContact" action="" method="post">
+                            <div class="form-group">    
                                 <label>First name and Last name</label>
-                                <input name="first_name" type="text" placeholder="First Name" class="form-control">
-                                <input name="last_name" type="text" placeholder="Last Name" class="form-control">
+                                <input name="first_name" type="text" placeholder="First Name" class="form-control" autofocus required>
+                                <input name="last_name" type="text" placeholder="Last Name" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label>Contact number</label>
-                                <input name="phone_number" type="tel" placeholder="Phone Number" class="form-control">
+                                <input name="phone_number" type="tel" placeholder="Phone Number" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label>Street Address</label>
-                                <input name="street_1" type="text" placeholder="Street" class="form-control">
+                                <input name="street_1" type="text" placeholder="Street" class="form-control" required>
                                 <input name="street_2" type="text" placeholder="Street2" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label>City, State</label>
-                                <input name="city" type="text" placeholder="City" class="form-control">
-                                <input name="state" type="text" placeholder="State" class="form-control">
+                                <input name="city" type="text" placeholder="City" class="form-control" required>
+                                <input name="state" type="text" placeholder="State" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label>Zip Code</label>
                                 <input name="zip" 
                                        type="text" 
                                        placeholder="Zip"
-                                       class="form-control">
+                                       class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <button type="submit" 
@@ -53,5 +54,6 @@
         </main>
         <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
         <script src="scripts/lib/bootstrap.min.js"></script>
+        <script src="scripts/manage.js"></script>
     </body>
 </html>
