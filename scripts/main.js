@@ -56,7 +56,9 @@ function buildContacts (contacts, content) {
         liElementCount = 0,
         ulElement = buildAddressBookPage(content.contactListName),
         addressElement,
+        deleteElement,
         figureElement,
+        editElement,
         imgElement,
         h3Element,
         liElement,
@@ -83,16 +85,21 @@ function buildContacts (contacts, content) {
         h3Element = document.createElement("h3");
         aElement = document.createElement('a');
         addressElement = document.createElement("address");
+        deleteElement = document.createElement("div");
+        editElement = document.createElement("div");
 
         liElement.classList.add("row", "contact", "light-primary-color");
+        liElement.setAttribute("contact-id", contact.id);
         figureElement.classList.add( "col", "img-wrapper");
         imgElement.classList.add( "avatar");
         imgElement.setAttribute("src", "images/people/" + contact.avatar);
         imgElement.setAttribute("alt", "avatar");
         h3Element.classList.add( "col", "contact-name");
         aElement.classList.add( "col", "contact-number");
-        aElement.setAttribute("href", contact.phone);
+        aElement.setAttribute("href", "tel:" + contact.phone);
         addressElement.classList.add( "col", "address");
+        deleteElement.classList.add("fa", "fa-trash", "fa-lg", "delete-item");
+        editElement.classList.add("fa", "fa-pencil", "fa-lg", "edit-item");
 
         figureElement.appendChild(imgElement);
         h3Element.appendChild(content[0]);
@@ -103,6 +110,8 @@ function buildContacts (contacts, content) {
         liElement.appendChild(h3Element);
         liElement.appendChild(aElement);
         liElement.appendChild(addressElement);
+        liElement.appendChild(deleteElement);
+        liElement.appendChild(editElement);
 
         ulElement.appendChild(liElement);        
     }
@@ -119,6 +128,7 @@ function buildAddressBookPage (title) {
        header = document.createElement("header"),
        h1Element = document.createElement("h1"),
        ulElement = document.createElement("ul"),
+       aside = document.createElement("aside"),
        content = document.createTextNode(title);
 
        ulElement.classList.add( "table", "contact-list");
@@ -136,8 +146,32 @@ function buildAddressBookPage (title) {
        mainElement.appendChild(section2);
 
        document.body.appendChild(mainElement);
-
+       bindEvents(mainElement);
        return ulElement;
+}
+
+function bindEvents(mainElement){
+    
+    mainElement.addEventListener("click", handleItemClick, false);
+      
+}
+
+function handleItemClick(e){
+    
+    if (e.target.classList.contains("edit-item")){
+     
+     //the edit button was clicked  
+        
+    }
+    
+    else if (e.target.classList.contains("delete-item")){
+        
+        //the delete button was clicked
+        
+        deleteContact(e.target);
+        
+    }
+    
 }
 
 function initialize () {

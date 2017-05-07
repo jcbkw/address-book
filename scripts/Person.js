@@ -1,5 +1,6 @@
 function Person (jsonPerson) {
 
+    this.id = jsonPerson.id;
     this.name = jsonPerson.name;
     this.phone = jsonPerson.phone;
     this.avatar = jsonPerson.avatar;

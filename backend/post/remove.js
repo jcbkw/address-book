@@ -51,20 +51,23 @@ module.exports = function (request, response) {
         else {
             
             var errors = [];
+            var status;
             
             if (request.body.id) {
                 
                 errors.push('Could not find any contact with the ID "' + request.body.id + '"!');
+                status = 404;
                 
             }
             else {
                 
                 errors.push('The "id" is required!');
+                status = 406;
                 
             }
             
             // send the errors, with a Not Acceptable status
-            response.status(406/*HTTP status: Not Acceptable*/).json();
+            response.status(status).json();
             
         }
     
