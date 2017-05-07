@@ -13,9 +13,7 @@ function getContent (url, callback) {
             try {
                 
                 parsedData = JSON.parse(xhr.responseText);
-
                 
-
             }
             catch (e) {
 

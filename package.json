@@ -4,8 +4,8 @@
   "description": "Address book to store contacts",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "debug": "node-debug app.js"
+    "start": "node server.js",
+    "debug": "node-debug server.js"
   },
   "repository": {
     "type": "git",
