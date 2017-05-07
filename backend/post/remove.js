@@ -22,13 +22,13 @@ module.exports = function (request, response) {
         var contactJsonObject = JSON.parse(contactFileText);
         
         // find the contact's position in the list
-        var contactIndex = findContactIndex(request.body.id);
+        var contactIndex = findContactIndex(request.body.id, contactJsonObject.contactList);
         
         // found
         if (contactIndex !== -1) {
             
-            // append th e new contact
-            contactJsonObject.contactList.splice(contactIndex);
+            // remove it
+            contactJsonObject.contactList.splice(contactIndex, 1);
 
             // stringify the JS object back to a plain text
             contactFileText = JSON.stringify(contactJsonObject, null, 4);
@@ -47,11 +47,24 @@ module.exports = function (request, response) {
             });
             
         }
-        //  no bueno
+        //  not found
         else {
-             
+            
+            var errors = [];
+            
+            if (request.body.id) {
+                
+                errors.push('Could not find any contact with the ID "' + request.body.id + '"!');
+                
+            }
+            else {
+                
+                errors.push('The "id" is required!');
+                
+            }
+            
             // send the errors, with a Not Acceptable status
-            response.status(406/*HTTP status: Not Acceptable*/).json(errors);
+            response.status(406/*HTTP status: Not Acceptable*/).json();
             
         }
     

@@ -2,13 +2,13 @@
 
 var file = require("fs"),
     path = require("path"),
-    root = path.normalize(path.join(__dirname, '..', '..'));
+    root = path.normalize(path.join(__dirname, '..', '..')),
+    findContactIndex = require('../findContactIndex');
 
 module.exports = function (request, response) {
-        
+    
     var contact = {
          
-         "id": (Math.round(Math.random() * 9999) + Date.now()).toString(16),
          "name": request.body.first_name + ' ' + request.body.last_name,
          "phone": request.body.phone_number,  
          "avatar": "avatars_00.png",  
@@ -39,14 +39,67 @@ module.exports = function (request, response) {
         // parse the contact json text to a JS object
         var contactJsonObject = JSON.parse(contactFileText);
         
+        var errors = [];
+        
+        var isEdit = request.path === '/edit.html';
+        
+        var contactIndex = -1;
+        
+        // is a request to edit this contact?
+        if (isEdit) {
+            
+            contactIndex = findContactIndex(request.body.id, contactJsonObject.contactList);
+            
+            // nout found
+            if (contactIndex === -1) {
+                
+                if (request.body.id) {
+
+                    errors.push('Could not find any contact with the ID "' + request.body.id + '"!');
+
+                }
+                else {
+
+                    errors.push('The "id" is required!');
+
+                }
+                
+            }
+            else {
+                
+                contact.id = request.body.id;
+                
+                // remove the old one
+                contactJsonObject.contactList.splice(contactIndex, 1);
+                
+            }            
+                        
+        }
+        else {
+            
+            contact.id = (Math.round(Math.random() * 9999) + Date.now()).toString(16);
+            
+        }
+        
         // validate it for errors
-        var errors = validate(contact, contactJsonObject.contactList);
+        errors.push.apply(errors, validate(contact, contactJsonObject.contactList));
         
         // no errors found
         if (errors.length === 0) {
             
-            // append th e new contact
-            contactJsonObject.contactList.push(contact);
+            // append the new contact
+            if (!isEdit) {
+                
+                // insert as last
+                contactJsonObject.contactList.push(contact);
+                
+            }
+            else {
+                
+                // insert in place
+                contactJsonObject.contactList.splice(contactIndex, 0, contact);
+                
+            }
 
             // stringify the JS object back to a plain text
             contactFileText = JSON.stringify(contactJsonObject, null, 4);
