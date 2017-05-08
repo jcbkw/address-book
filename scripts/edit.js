@@ -1,3 +1,5 @@
+/* global contact */
+
 (function () {
     
     /**
@@ -114,11 +116,46 @@
         
     }
     
+    function renderContact(form) {
+        
+        var items = form.querySelectorAll("input[name]"),
+            address = window.contact.getAddress(),
+            name = window.contact.name.split(" "),    
+            phone = window.contact.phone,
+            firstName = name[0],
+            lastName = name[1],
+            item,
+            i;
+           
+        for (i = 0; i < items.length; i += 1 ){
+            
+            item = items[i];
+            
+            switch (item.name) {
+                
+                case "city"             : item.value = address.city;      break;
+                case "state"            : item.value = address.state;     break;
+                case "zip"              : item.value = address.zip;       break;
+                case "street_1"         : item.value = address.street;    break;
+                case "street_2"         : item.value = address.street2;   break;
+                case "phone_number"     : item.value = phone;             break;
+                case "last_name"        : item.value = lastName;          break;
+                case "first_name"       : item.value = firstName;         break;
+                
+            }
+            
+        }
+        
+    }
+    
     // Attachings all relevant DOM event handlers here
     function bindEvents () {
 
-        document.getElementById("newContact")
-                .addEventListener("submit", formSubmitHandler, false);
+        var form = document.getElementById("newContact");
+        
+        form.addEventListener("submit", formSubmitHandler, false);
+        
+        renderContact(form);
         
     }
     
