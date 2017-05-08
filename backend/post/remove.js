@@ -67,7 +67,7 @@ module.exports = function (request, response) {
             }
             
             // send the errors, with a Not Acceptable status
-            response.status(status).json();
+            response.status(status).json(errors);
             
         }
     
