@@ -1,4 +1,4 @@
-/* global decodeURIComponent */
+/* global decodeURIComponent, getQuery */
 
 function getContent (url, callback) {
 
@@ -27,27 +27,6 @@ function getContent (url, callback) {
 
         xhr.send();
 
-}
-
-function urlDecode (value) {
-    
-    return decodeURIComponent(value).split('+').join(' ');
-    
-}
-
-function getQuery () {
-    
-    var obj = {};
-
-    location.search.substring(1).split("&").forEach(function (w) {
-        
-        var parts = w.split("=");
-        
-        obj[urlDecode(parts[0])]= parts[1] ? urlDecode(parts[1]) : '';
-        
-    });
-    
-    return obj;
 }
 
 function buildContacts (contacts, content) {
@@ -160,18 +139,52 @@ function handleItemClick(e){
     
     if (e.target.classList.contains("edit-item")){
      
-     //the edit button was clicked  
-        
+        //the edit button was clicked
+        editContact(e.target);
+
     }
-    
     else if (e.target.classList.contains("delete-item")){
         
         //the delete button was clicked
-        
         deleteContact(e.target);
         
     }
     
+}
+
+function editContact(editBtn){
+    var id = editBtn.parentNode.getAttribute("contact-id");
+    var otherWindow = window.open("../edit.html?id="+ id, '_blank', 'width=640,height=480');
+    otherWindow.focus();
+    otherWindow.addEventListener("unload", function () {
+        
+      location.reload();
+        
+    }, /*useCapture */ false);
+    
+}
+
+function deleteContact(deleteBtn){
+
+    var id = deleteBtn.parentNode.getAttribute("contact-id"),
+        xhr = new XMLHttpRequest(),
+        payload = "id=" + encodeURIComponent(id),
+        i;
+
+    xhr.open("POST", "/remove.html", /*async*/true);
+
+    xhr.addEventListener("load", function (e) {
+
+    if (this.status === 200) {
+       
+            deleteBtn.parentNode.parentNode.removeChild(deleteBtn.parentNode); 
+       
+    }
+
+    }, /*propagation*/ false);
+    
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.send(payload);
 }
 
 function initialize () {

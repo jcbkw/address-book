@@ -1,17 +1,17 @@
 {
     "contactList": [
         {
-            "id": "15be3726296",
-            "name": "Joi Wilkins",
-            "phone": "201-555-4444",
-            "avatar": "avatars_01.png",
+            "name": "Bryanna Williams",
+            "phone": "2016161430",
+            "avatar": "avatars_00.png",
             "address": {
-                "street": "259 24th Street",
+                "street": "14 Knapp Avenue",
                 "street2": "2nd Floor",
-                "city": "Jersey City",
-                "state": "New Jersey",
-                "zip": "07306"
-            }
+                "city": "CLIFTON",
+                "state": "NJ",
+                "zip": "07011"
+            },
+            "id": "15be3726296"
         },
         {
             "id": "15be3726c8b",
