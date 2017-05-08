@@ -8,23 +8,29 @@
         
         e.preventDefault();
         
-        var xhr = new XMLHttpRequest(),
-            form = this,
+        var form = this,
             items = form.querySelectorAll("input[name]"),
-            payload =[],
+            payload = {},
             i;
 
         for (i = 0; i < items.length; i += 1 ){
 
             var item = items[i];
 
-            payload.push(encodeURIComponent(item.name) + "=" + encodeURIComponent(item.value));
+            payload.item.name = item.value;
 
         }
 
-        xhr.open("POST", location.pathname, /*async*/true);
-        
-        xhr.addEventListener("load", function (e) {
+        xhrPost(location.pathname, payload.join("&"),  function (error) {
+           
+            if (error) {
+                
+               showMessage("We are experiencing some difficulties right now,\n\
+                           please try again later", true /*iserror*/);
+               
+               return;
+                
+            }
             
             switch (/*xhr*/this.status) {
                 
@@ -38,27 +44,12 @@
                     
                 break;
                 
-                // things are bad
-                default   : showMessage("We are experiencing some difficulties right now, please try again later", true /*iserror*/); break;
-               
+                default : showMessage("We are experiencing some difficulties \n\
+                          right now, please try again later", true /*iserror*/);
             }
-            
-        });
+        });  
+    };
         
-        xhr.addEventListener("error", function () {
-            
-            // things are really bad
-            showMessage("We are experiencing some difficulties right now, please try again later", true /*iserror*/);
-            
-        });
-        
-        // Send the proper header information along with the request to the backend.
-        // "When sending data to a server"
-        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhr.send(payload.join("&"));
-        
-    }
-    
     function showMessage (messageHtmlString, isErrorBoolean) {
         
         // create the div that's going to contain the message

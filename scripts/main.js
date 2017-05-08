@@ -3,35 +3,6 @@
 (function (){
 
     var contactMap = {};
-
-    function getContent (url, callback) {
-
-        var xhr = new XMLHttpRequest();
-
-            xhr.open("GET", url, true);
-
-            xhr.addEventListener("load", function(e) {
-
-                var parsedData;
-
-                try {
-
-                    parsedData = JSON.parse(xhr.responseText);
-
-                }
-                catch (e) {
-
-                    parsedData = null;
-
-                }
-
-                callback(parsedData);
-
-            }, false);
-
-            xhr.send();
-
-    }
     
     function buildContacts (contacts, content) {
 
@@ -197,9 +168,9 @@
 
     function initialize () {
 
-       getContent("data/content.json", function (content) {
+        xhrGetJson("data/content.json", null, function (error, content) {
 
-            getContent("data/contacts.json", function (contacts) {
+            xhrGetJson("data/contacts.json", null, function (error, contacts) {
 
                 buildContacts(contacts, content || {contactListName: 'Derp'});
 

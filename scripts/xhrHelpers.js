@@ -1,4 +1,24 @@
-function postParameters (url, params, callback) {
+
+///**
+// * Create a new ajax POST request.
+// * 
+// * Takes parameters. As argumments they are encoded and passed to the server.
+// * 
+// * Sends our post with one argument (payload).
+// * 
+// * Appends a callback function to an event listener "load" (complete)that has two parameters
+// * - the first parameter is built in error handle
+// * - the second parameter is a capture of the server's response 
+// * 
+// * returns the xhr object
+// * 
+// * @param {type} url
+// * @param {type} params
+// * @param {type} callback
+// * @returns {XMLHttpRequest|xhrPost.xhr}
+// * 
+
+function xhrPost (url, params, callback) {
         
     var xhr = new XMLHttpRequest(),
         payload;
@@ -7,7 +27,7 @@ function postParameters (url, params, callback) {
 
     xhr.addEventListener("load", function (event) {
 
-        callback && callback.call(xhr, /*no error*/null, event.responseText);
+        callback && callback.call(xhr, /*no error*/null, event.target.responseText);
 
     });
 
@@ -46,7 +66,7 @@ function postParameters (url, params, callback) {
 
 }
 
-function getText (url, params, callback) {
+function xhrGet (url, params, callback) {
         
     var xhr = new XMLHttpRequest(),
         payload;
@@ -54,7 +74,7 @@ function getText (url, params, callback) {
 
     xhr.addEventListener("load", function (event) {
 
-        callback && callback.call(xhr, /*no error*/null, event.responseText);
+        callback && callback.call(xhr, /*no error*/null, event.target.responseText);
 
     });
 
@@ -89,9 +109,9 @@ function getText (url, params, callback) {
 
 }
 
-function getJson (url, params, callback) {
+function xhrGetJson (url, params, callback) {
     
-    getText(url, params, function (error, text) {
+    xhrGet(url, params, function (error, text) {
         
         if (error) {
             
