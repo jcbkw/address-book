@@ -10,10 +10,9 @@
         
         e.preventDefault();
         
-        var xhr = new XMLHttpRequest(),
-            form = this,
+        var form = this,
             items = form.querySelectorAll("input[name]"),
-            payload =[],
+            payload = {},
             query = getQuery(),
             i;
            
@@ -23,15 +22,21 @@
 
             var item = items[i];
 
-            payload.push(encodeURIComponent(item.name) + "=" + encodeURIComponent(item.value));
+            payload[item.name] = item.value;
 
         }
         
-        payload.push("id=" + encodeURIComponent(query.id));
-
-        xhr.open("POST", location.pathname, /*async*/true);
-        
-        xhr.addEventListener("load", function (e) {
+        payload.id = query.id;
+                
+        xhrPost(location.pathname, payload, function (error) {
+            
+            if (error) {
+                
+                showMessage("We are experiencing some difficulties right now, please try again later", true /*iserror*/);
+                
+                return;
+                
+            }
             
             switch (/*xhr*/this.status) {
                 
@@ -54,18 +59,6 @@
             }
             
         });
-        
-        xhr.addEventListener("error", function () {
-            
-            // things are really bad
-            showMessage("We are experiencing some difficulties right now, please try again later", true /*iserror*/);
-            
-        });
-        
-        // Send the proper header information along with the request to the backend.
-        // "When sending data to a server"
-        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhr.send(payload.join("&"));
         
     }
     
