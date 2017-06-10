@@ -1,13 +1,22 @@
-<li class="row contact light-primary-color" contact-id ="{{contact.id}}">
+{{#each contactList}}
+<li class="row contact light-primary-color" contact-id ="{{id}}">
   <figure class="col img-wrapper">
-    <img src="images/people/" + {{contact.avatar}} class="avatar" alt="avatar">
+    <img src="images/people/{{avatar}}" class="avatar" alt="avatar">
   </figure> 
-    <h3 class="col contact-name"></h3>  
-  <a></a>
-  <address></address>
-  <div></div>
-  <div></div>
+    <h3 class="col contact-name">{{name}}</h3>  
+  <a href="tel:{{phone}}"  class="col contact-number">{{phone}}</a>
+  <address class="col address">
+           {{address.street}}
+           {{address.street2}}, 
+           {{address.city}},
+           {{address.state}},
+           {{address.zip}}
+  
+  </address>
+  <div class="col fa fa-trash fa-lg delete-item"></div>
+  <div class="col fa fa-pencil fa-lg delete-item"></div>
 </li>
+{{/each}}
 
 
 
