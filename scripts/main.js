@@ -1,8 +1,7 @@
 $(function (){
    
     var contactMap = {};
-    
-    
+     
     function buildContacts (data) {
         
        $.get('../templates/contacts.html', function (response){
@@ -88,18 +87,41 @@ $(function (){
         xhr.send(payload);
     }
 
-    function initialize () {
 
-        $.getJSON("data/content.json", function (content) {
+    function loadData(i, objArr, urlArray){
+       debugger; 
+        if (i < urlArray.length) {
+            
+            i +=1;
+            loadData(i, objArr, urlArray );
+            $.getJSON(urlArray[i] + ".json", function (content) {
 
-            $.getJSON("data/contacts.json", function (contacts) {
-
-                buildAddressBookPage(content);
-                buildContacts(contacts);
+                objArr.push(content);
 
             });
+        }
+                    
+        console.log(objArray);
+        return objArray;
+        
+    }; 
 
-       });
+    function initialize () {
+      var contentArray = [],
+          dataUrlArray = ["data/content","data/contacts"],
+          iterator = 0;
+       loadData(iterator, contentArray, dataUrlArray);
+       //loadTemplates();
+//        $.getJSON("data/content.json", function (content) {
+//
+//            $.getJSON("data/contacts.json", function (contacts) {
+//
+//                buildAddressBookPage(content);
+//                buildContacts(contacts);
+//
+//            });
+//
+//       });
 
     }
     
