@@ -92,17 +92,19 @@ $(function (){
        debugger; 
         if (i < urlArray.length) {
             
-            i +=1;
-            loadData(i, objArr, urlArray );
             $.getJSON(urlArray[i] + ".json", function (content) {
 
                 objArr.push(content);
+                
+                i += 1;
+                
+                loadData(i, objArr, urlArray );
 
             });
+            
         }
                     
-        console.log(objArray);
-        return objArray;
+        console.log(objArr);
         
     }; 
 
