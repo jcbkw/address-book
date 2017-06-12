@@ -89,30 +89,61 @@ $(function (){
 
 
     function loadData(i, objArr, urlArray){
+       //debugger; 
+            
+        $.getJSON(urlArray[i] + ".json", function (content) {
+
+            objArr.push(content);
+
+            i += 1;
+            if (i < urlArray.length) {
+                
+                //console.log(objArr);
+
+                loadData(i, objArr, urlArray);
+
+            }
+        });
+
+    };
+    
+    function loadTemplates(i, templateArr, templateName){
        debugger; 
-        if (i < urlArray.length) {
             
-            $.getJSON(urlArray[i] + ".json", function (content) {
+        $.get("../templates/" + templateName[i] + ".html", function (content) {
 
-                objArr.push(content);
-                
-                i += 1;
-                
-                loadData(i, objArr, urlArray );
+            templateArr.push(content);
 
-            });
+            i += 1;
             
-        }
-                    
-        console.log(objArr);
-        
-    }; 
+            if (i < templateName.length) {
+                
+                //console.log(objArr);
+
+                loadTemplates(i, templateArr, templateName);
+
+            }
+        });
+
+    };
+    
+    /**
+     * 
+     * Gathers template content, and json data content needed to build
+     *  page from two async request.
+     */
 
     function initialize () {
       var contentArray = [],
+          templateArray = [],
           dataUrlArray = ["data/content","data/contacts"],
+          templateNameArray = ["contacts", "main"],
           iterator = 0;
        loadData(iterator, contentArray, dataUrlArray);
+ 
+       loadTemplates(iterator, templateArray, templateNameArray);
+       console.log(contentArray);
+       console.log(templateArray);
        //loadTemplates();
 //        $.getJSON("data/content.json", function (content) {
 //
